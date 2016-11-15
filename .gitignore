@@ -8,4 +8,4 @@ obj/
 *.user
 
 # Tests
-Library/SslLabsLib.Tests/TestResult.xml
+TestResult.xml
