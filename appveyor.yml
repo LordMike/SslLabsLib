@@ -3,7 +3,7 @@ build_script:
     $version = (Get-Content .\Library\SslLabsLib\project.json | ConvertFrom-Json).version
 
 
-    Update-AppveyorBuild -Version $version
+    Update-AppveyorBuild -Version "$version.$env:APPVEYOR_BUILD_NUMBE"
 
 
     # Core
