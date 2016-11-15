@@ -1,18 +1,13 @@
 # SSL Labs API client for .NET
 This is an SSL Labs API client wrapper for [SSLLabs asssesment tool](https://www.ssllabs.com/), based on the official [SSL Labs API Documentation](https://github.com/ssllabs/ssllabs-scan/blob/stable/ssllabs-api-docs.md)
 
+[![Build status](https://ci.appveyor.com/api/projects/status/hcetxym0o320fakj?svg=true)](https://ci.appveyor.com/project/LordMike/ssllabslib)
+
+
 # Installation
 The easiest way to get the library is to use Nuget. The library has been published [here](https://www.nuget.org/packages/SslLabsLib/), and is also available [at Github](https://github.com/LordMike/SslLabsLib) in source form. The following Nuget command will fetch the package for you.
 
     Install-Package SslLabsLib
-
-# Version
-The library is currently in version `0.3.2` (on Nuget), and follows engine version `1.19.33`.
-
-# Dependencies
-
-* Newtonsoft.Json -- For parsing JSON documents
-* Microsoft.Net.Http -- REST Client from Microsoft
 
 # Usage
 The SSL Labs API is built up around a polling method, where you regularly poll the API for the status on an ongoing assesment. The client has been designed to mimick this. The following is a series of common commands you will be using.
