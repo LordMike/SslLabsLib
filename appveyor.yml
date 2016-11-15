@@ -3,24 +3,20 @@ build_script:
     $version = (Get-Content .\Library\SslLabsLib\project.json | ConvertFrom-Json).version
 
 
-    Update-AppveyorBuild -Version "$version.$env:APPVEYOR_BUILD_NUMBE"
-
-
+    Update-AppveyorBuild -Version "$version.$env:APPVEYOR_BUILD_NUMBER"
+- ps: >-
     # Core
 
     dotnet restore
-
-
+- ps: >-
     # Library
 
     dotnet pack -c Release -o Nuget\ Library\SslLabsLib
-
-
+- ps: >-
     # Tests
 
     dotnet build -c Release Library\SslLabsLib.Tests
-
-
+- ps: >-
     # Utilities
 
     dotnet build -c Release Tools\SslLabsCli
