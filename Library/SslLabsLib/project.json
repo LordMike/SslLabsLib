@@ -1,0 +1,22 @@
+{
+  "version": "0.4.1",
+  "buildOptions": {
+  },
+  "dependencies": {
+    "Newtonsoft.Json": "9.0.1"
+  },
+  "frameworks": {
+    "net40": {
+      "dependencies": {
+        "Microsoft.Net.Http": "2.2.29"
+      }
+    },
+    "netstandard1.3": {
+      "dependencies": {
+        "System.Net.Http": "4.1.0",
+        "System.Runtime.InteropServices": "4.1.0",
+        "System.Threading.Thread": "4.0.0"
+      }
+    }
+  }
+}

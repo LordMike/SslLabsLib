@@ -1,0 +1,11 @@
+{
+  "version": "0.4.1",
+  "buildOptions": {
+  },
+  "dependencies": {
+    "SslLabsLib": "0.4.1"
+  },
+  "frameworks": {
+    "net40": {}
+  }
+}

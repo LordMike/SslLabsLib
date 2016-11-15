@@ -1,6 +1,11 @@
-packages/
+# Folders
 bin/
 obj/
+.vs/
 
-*.suo
+# Files
+*.lock.json
 *.user
+
+# Tests
+Library/SslLabsLib.Tests/TestResult.xml

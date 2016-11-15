@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace SslLabsLib.Tests.Helpers
 {
@@ -17,11 +17,7 @@ namespace SslLabsLib.Tests.Helpers
                 if (ignoreFields.Contains(prop.Name))
                     continue;
 
-                if (prop.PropertyType.IsValueType)
-                {
-
-                }
-                else
+                if (!prop.PropertyType.GetTypeInfo().IsValueType)
                 {
                     // Must not be null
                     object value = prop.GetValue(obj, null);

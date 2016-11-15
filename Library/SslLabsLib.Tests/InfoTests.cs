@@ -1,13 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using SslLabsLib.Objects;
 using SslLabsLib.Tests.Helpers;
 
 namespace SslLabsLib.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class InfoTests
     {
-        [TestMethod]
+        [Test]
         public void InfoTest()
         {
             SslLabsClient client = new SslLabsClient();

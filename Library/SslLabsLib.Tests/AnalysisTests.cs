@@ -1,20 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SslLabsLib.Enums;
 using SslLabsLib.Objects;
 using SslLabsLib.Tests.Helpers;
 
 namespace SslLabsLib.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class AnalysisTests
     {
-        [TestMethod]
+        [Test]
         public void GeneralTest()
         {
             SslLabsClient client = new SslLabsClient();
-            Analysis analysis = client.GetAnalysis("scotthelme.co.uk", options: AnalyzeOptions.ReturnAll);
+            Analysis analysis = client.GetAnalysisBlocking("scotthelme.co.uk", options: AnalyzeOptions.ReturnAll);
 
             Assert.IsNotNull(analysis);
             Assert.AreEqual(AnalysisStatus.READY, analysis.Status, "scotthelme.co.uk analysis was not ready. Wait for the analysis to complete.");
@@ -30,11 +30,11 @@ namespace SslLabsLib.Tests
             TestHelpers.EnsureAllPropertiesSet(details, nameof(EndpointDetails.StaplingRevocationErrorMessage), nameof(EndpointDetails.HttpForwarding));
         }
 
-        [TestMethod]
+        [Test]
         public void HstsTest()
         {
             SslLabsClient client = new SslLabsClient();
-            Analysis analysis = client.GetAnalysis("scotthelme.co.uk", options: AnalyzeOptions.ReturnAll);
+            Analysis analysis = client.GetAnalysisBlocking("scotthelme.co.uk", options: AnalyzeOptions.ReturnAll);
 
             Assert.IsNotNull(analysis);
             Assert.AreEqual(AnalysisStatus.READY, analysis.Status, "scotthelme.co.uk analysis was not ready. Wait for the analysis to complete.");
@@ -51,11 +51,11 @@ namespace SslLabsLib.Tests
             Assert.IsTrue(hstsPreloads.Any(s => s.Source == "Chrome"));
         }
 
-        [TestMethod]
+        [Test]
         public void HpkpTest()
         {
             SslLabsClient client = new SslLabsClient();
-            Analysis analysis = client.GetAnalysis("scotthelme.co.uk", options: AnalyzeOptions.ReturnAll);
+            Analysis analysis = client.GetAnalysisBlocking("scotthelme.co.uk", options: AnalyzeOptions.ReturnAll);
 
             Assert.IsNotNull(analysis);
             Assert.AreEqual(AnalysisStatus.READY, analysis.Status, "scotthelme.co.uk analysis was not ready. Wait for the analysis to complete.");

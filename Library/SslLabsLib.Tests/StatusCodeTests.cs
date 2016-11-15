@@ -1,14 +1,14 @@
 ﻿using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SslLabsLib.Objects;
 using SslLabsLib.Tests.Helpers;
 
 namespace SslLabsLib.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class StatusCodeTests
     {
-        [TestMethod]
+        [Test]
         public void StatusCodeTest()
         {
             SslLabsClient client = new SslLabsClient();
