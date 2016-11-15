@@ -1,16 +1,27 @@
 build_script:
-- cmd: >-
-    REM Core
+- ps: >-
+    $version = (Get-Content .\Library\SslLabsLib\project.json | ConvertFrom-Json).version
+
+
+    Update-AppveyorBuild -Version $version
+
+
+    # Core
 
     dotnet restore
 
+
+    # Library
+
     dotnet pack -c Release -o Nuget\ Library\SslLabsLib
+
+
+    # Tests
 
     dotnet build -c Release Library\SslLabsLib.Tests
 
 
-
-    REM Utilities
+    # Utilities
 
     dotnet build -c Release Tools\SslLabsCli
 
