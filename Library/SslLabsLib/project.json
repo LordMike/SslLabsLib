@@ -18,7 +18,7 @@
 
   "buildOptions": {
     "publicSign": true,
-    "keyFile": "../SigningKey.snk"
+    "keyFile": "../../SigningKey.snk"
   },
 
   "dependencies": {
