@@ -10,7 +10,7 @@ namespace SslLabsLib.Objects
         /// Certificates in the chain
         /// </summary>
         [JsonProperty("certs")]
-        public List<ChainCertificate> Certs { get; set; }
+        public List<ChainCert> Certs { get; set; }
 
         /// <summary>
         /// The issues with this chain
@@ -20,7 +20,7 @@ namespace SslLabsLib.Objects
 
         public Chain()
         {
-            Certs = new List<ChainCertificate>();
+            Certs = new List<ChainCert>();
         }
     }
 }

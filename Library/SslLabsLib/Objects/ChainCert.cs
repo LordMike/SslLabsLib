@@ -5,8 +5,7 @@ using SslLabsLib.Enums;
 
 namespace SslLabsLib.Objects
 {
-    // TODO: Rename to ChainCert
-    public class ChainCertificate
+    public class ChainCert
     {
         /// <summary>
         /// Certificate subject
