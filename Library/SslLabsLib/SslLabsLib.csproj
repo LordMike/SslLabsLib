@@ -3,7 +3,6 @@
   <PropertyGroup>
     <Description>SSL Labs Assesment API Library for .NET</Description>
     <AssemblyTitle>SslLabsLib</AssemblyTitle>
-    <VersionPrefix>0.4.2</VersionPrefix>
     <Authors>LordMike</Authors>
     <TargetFrameworks>net40;netstandard1.3</TargetFrameworks>
     <PublicSign>true</PublicSign>
@@ -16,6 +15,7 @@
     <PackageLicenseUrl>https://github.com/lordmike/ssllabslib/blob/master/LICENSE.txt</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/lordmike/ssllabslib</RepositoryUrl>
+    <Version>0.4.3-alpha</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">

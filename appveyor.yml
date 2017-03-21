@@ -5,7 +5,7 @@ build_script:
 
     $version = $doc.Project.PropertyGroup.VersionPrefix
 
-    Update-AppveyorBuild -Version "$version.$env:APPVEYOR_BUILD_NUMBER"
+    Update-AppveyorBuild -Version "$version build $env:APPVEYOR_BUILD_NUMBER"
 - ps: # Core
 - ps: msbuild /t:Restore
 - ps: # Build
