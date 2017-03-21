@@ -8,15 +8,10 @@ build_script:
     Update-AppveyorBuild -Version "$version.$env:APPVEYOR_BUILD_NUMBER"
 - ps: # Core
 - ps: msbuild /t:Restore
-- ps: # Library
-- ps: msbuild /t:Build /p:Configuration=Release Library\SslLabsLib
+- ps: # Build
+- ps: msbuild /t:Build /p:Configuration=Release
+- ps: # Pack library
 - ps: msbuild /t:Pack /p:Configuration=Release /p:OutputPath=..\..\Nuget\ Library\SslLabsLib
-- ps: # Tests
-- ps: msbuild /t:Build /p:Configuration=Release Library\SslLabsLib.Tests
-- ps: # Utilities
-- ps: msbuild /t:Build /p:Configuration=Release Tools\SslLabsCli
-- ps: msbuild /t:Build /p:Configuration=Release Tools\SslLabsMassScan
-- ps: msbuild /t:Build /p:Configuration=Release Tools\TestApplication
 test: off
 #test_script:
 #- ps: dotnet test -c Release Library\SslLabsLib.Tests
