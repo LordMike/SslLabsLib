@@ -1,16 +1,18 @@
+using System.Net;
 using Newtonsoft.Json;
+using SslLabsLib.Code;
 using SslLabsLib.Enums;
 
 namespace SslLabsLib.Objects
 {
     public class Endpoint
     {
-        // TODO: Represent this as an IpAddress
         /// <summary>
         /// Endpoint IP address, in IPv4 or IPv6 format.
         /// </summary>
         [JsonProperty("ipAddress")]
-        public string IpAddress { get; set; }
+        [JsonConverter(typeof(IpAddressConverter))]
+        public IPAddress IpAddress { get; set; }
 
         /// <summary>
         /// Server name retrieved via reverse DNS
