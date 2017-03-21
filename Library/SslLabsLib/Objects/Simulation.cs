@@ -8,7 +8,7 @@ namespace SslLabsLib.Objects
         /// The client used
         /// </summary>
         [JsonProperty("client")]
-        public Client Client { get; set; }
+        public SimClient Client { get; set; }
 
         /// <summary>
         /// Zero if handshake was successful, 1 if it was not.
@@ -36,7 +36,7 @@ namespace SslLabsLib.Objects
 
         public Simulation()
         {
-            Client = new Client();
+            Client = new SimClient();
         }
     }
 }
