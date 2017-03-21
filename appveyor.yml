@@ -9,7 +9,7 @@ build_script:
 - ps: # Core
 - ps: msbuild /t:Restore
 - ps: # Build
-- ps: msbuild /t:Build /p:Configuration=Release
+- ps: msbuild /t:Build /p:Configuration=Release /p:IncludeSymbols=True /Verbosity:Minimal 
 test: off
 #test_script:
 #- ps: dotnet test -c Release Library\SslLabsLib.Tests
