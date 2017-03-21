@@ -46,7 +46,7 @@ namespace SslLabsLib
         public SslLabsClient(Uri baseUrl)
         {
             if (baseUrl == null)
-                throw new ArgumentNullException("baseUrl");
+                throw new ArgumentNullException(nameof(baseUrl));
 
             _restClient = new HttpClient();
             _restClient.BaseAddress = baseUrl;
