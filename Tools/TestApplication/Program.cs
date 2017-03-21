@@ -11,12 +11,12 @@ namespace TestApplication
         {
             SslLabsClient client = new SslLabsClient();
 
-            Analysis analysis = client.GetAnalysisBlocking("mbwarez.dk", null, AnalyzeOptions.StartNew, analysis1 =>
+            Host hostResult = client.GetAnalysisBlocking("mbwarez.dk", null, AnalyzeOptions.StartNew, analysis1 =>
             {
                 Console.WriteLine("Status: " + analysis1.Status + " (" + analysis1.StatusMessage + ")");
             });
 
-            Console.WriteLine(analysis);
+            Console.WriteLine(hostResult);
         }
     }
 }

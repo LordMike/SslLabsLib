@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -7,14 +7,13 @@ using SslLabsLib.Enums;
 
 namespace SslLabsLib.Objects
 {
-    // TODO: Rename to Host
-    public class Analysis
+    public class Host
     {
         /// <summary>
         /// Assessment host, which can be a hostname or an IP address
         /// </summary>
         [JsonProperty("host")]
-        public string Host { get; set; }
+        public string Hostname { get; set; }
 
         /// <summary>
         /// Assessment port (e.g., 443)
@@ -91,8 +90,8 @@ namespace SslLabsLib.Objects
         /// </summary>
         [JsonProperty("certHostnames", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> CertHostnames { get; set; }
-
-        public Analysis()
+        
+        public Host()
         {
             Endpoints = new List<Endpoint>();
             CertHostnames = new List<string>();

@@ -136,19 +136,19 @@ namespace SslLabsMassScan
                 string scanPath = Path.Combine(options.Output, domain + ".scan");
 
                 // Is it done already?
-                Analysis analysis;
+                Host hostResult;
 
                 if (File.Exists(scanPath))
                 {
                     if (options.Overwrite && maxAge.HasValue)
                     {
-                        analysis = JsonConvert.DeserializeObject<Analysis>(File.ReadAllText(scanPath));
+                        hostResult = JsonConvert.DeserializeObject<Host>(File.ReadAllText(scanPath));
 
-                        int age = (int)(DateTime.UtcNow - analysis.TestTime).TotalHours;
+                        int age = (int)(DateTime.UtcNow - hostResult.TestTime).TotalHours;
                         if (age > maxAge)
                         {
                             // Process this
-                            analysis = null;
+                            hostResult = null;
                         }
                         else
                         {
@@ -171,7 +171,7 @@ namespace SslLabsMassScan
                     TryStartResult didStart;
                     try
                     {
-                        didStart = client.TryStartAnalysis(domain, maxAge, out analysis, startOptions);
+                        didStart = client.TryStartAnalysis(domain, maxAge, out hostResult, startOptions);
                     }
                     catch (WebException ex)
                     {
@@ -210,17 +210,17 @@ namespace SslLabsMassScan
 
                 Task.Factory.StartNew(() =>
                 {
-                    Analysis innerAnalysis = null;
-                    if (analysis != null && analysis.Status == AnalysisStatus.READY)
+                    Host innerHostResult = null;
+                    if (hostResult != null && hostResult.Status == AnalysisStatus.READY)
                         // Use the one we fetched immediately
-                        innerAnalysis = analysis;
+                        innerHostResult = hostResult;
 
-                    while (innerAnalysis == null)
+                    while (innerHostResult == null)
                     {
                         try
                         {
                             // Block till we have an analysis
-                            innerAnalysis = client.GetAnalysisBlocking(domain);
+                            innerHostResult = client.GetAnalysisBlocking(domain);
                         }
                         catch (WebException ex)
                         {
@@ -234,7 +234,7 @@ namespace SslLabsMassScan
                         }
                     }
 
-                    File.WriteAllText(scanPath, JsonConvert.SerializeObject(innerAnalysis));
+                    File.WriteAllText(scanPath, JsonConvert.SerializeObject(innerHostResult));
 
                     Console.WriteLine("Completed " + domain);
 
