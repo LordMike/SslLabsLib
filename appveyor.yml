@@ -16,8 +16,9 @@ build_script:
 - ps: dotnet build -c Release Tools\SslLabsCli
 - ps: dotnet build -c Release Tools\SslLabsMassScan
 - ps: dotnet build -c Release Tools\TestApplication
-test_script:
-- ps: dotnet test -c Release Library\SslLabsLib.Tests
+test: off
+#test_script:
+#- ps: dotnet test -c Release Library\SslLabsLib.Tests
 artifacts:
 - path: Nuget\*.nupkg
 deploy:
