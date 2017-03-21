@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Newtonsoft.Json;
 using SslLabsLib;
 using SslLabsLib.Enums;
+using SslLabsLib.Objects;
 using ErrorEventArgs = Newtonsoft.Json.Serialization.ErrorEventArgs;
 
 namespace TestApplication
@@ -25,9 +27,13 @@ namespace TestApplication
             // Run a method call
 
             //client.GetInfo();
-            client.GetAnalysis("ssllabs.com", null, AnalyzeOptions.FromCache | AnalyzeOptions.ReturnAll);
-            
+            var analysis = client.GetAnalysis("ssllabs.com", null, AnalyzeOptions.FromCache | AnalyzeOptions.ReturnAll);
 
+            //var res2 = File.ReadAllText("out_control.txt");
+            //var analysis = JsonConvert.DeserializeObject<Host>(res2);
+
+            //var res1 = JsonConvert.SerializeObject(analysis, Formatting.Indented);
+            //File.WriteAllText("out_res.txt", res1);
 
             // Examine JSON errors
             Console.WriteLine($"There were {Errors.Count} JSON errors");
