@@ -75,7 +75,7 @@ namespace SslLabsLib.Objects
         /// <summary>
         /// When will the assessment results expire from the cache (typically set only for assessment with errors; otherwise the results stay in the cache for as long as there's sufficient room)
         /// </summary>
-        [JsonProperty("cacheExpiryTime")]
+        [JsonProperty("cacheExpiryTime", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public long CacheExpiryTime { get; set; }
 
         /// <summary>

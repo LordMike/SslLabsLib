@@ -124,6 +124,18 @@ namespace SslLabsLib.Objects
         [JsonProperty("mustStaple")]
         public MustStapleStatus MustStapleStatus { get; set; }
 
+        /// <summary>
+        /// SHA1 hash of certificate
+        /// </summary>
+        [JsonProperty("sha1Hash")]
+        public string Sha1Hash { get; set; }
+
+        /// <summary>
+        /// SHA256 hash of certificate for HPKP pinning
+        /// </summary>
+        [JsonProperty("pinSha256")]
+        public string PinSha256 { get; set; }
+
         public Cert()
         {
             CommonNames = new List<string>();

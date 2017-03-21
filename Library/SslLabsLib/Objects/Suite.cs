@@ -49,13 +49,13 @@ namespace SslLabsLib.Objects
         /// <summary>
         /// ECDH bits
         /// </summary>
-        [JsonProperty("ecdhBits")]
+        [JsonProperty("ecdhBits", NullValueHandling = NullValueHandling.Ignore)]
         public int EcdhBits { get; set; }
 
         /// <summary>
         /// ECDH RSA-equivalent strength
         /// </summary>
-        [JsonProperty("ecdhStrength")]
+        [JsonProperty("ecdhStrength", NullValueHandling = NullValueHandling.Ignore)]
         public int EcdhStrength { get; set; }
 
         /// <summary>

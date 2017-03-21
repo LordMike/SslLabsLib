@@ -16,31 +16,31 @@ namespace SslLabsLib.Objects
         /// <summary>
         /// The contents of the HPKP response header, if present
         /// </summary>
-        [JsonProperty("header")]
+        [JsonProperty("header", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string Header { get; set; }
 
         /// <summary>
         /// Error message, when the policy is invalid
         /// </summary>
-        [JsonProperty("error")]
+        [JsonProperty("error", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string Error { get; set; }
 
         /// <summary>
         /// The max-age value from the policy
         /// </summary>
-        [JsonProperty("maxAge")]
+        [JsonProperty("maxAge", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public long MaxAge { get; set; }
 
         /// <summary>
         /// True if the includeSubDomains directive is set; null otherwise
         /// </summary>
-        [JsonProperty("includeSubDomains")]
+        [JsonProperty("includeSubDomains", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public bool IncludeSubDomains { get; set; }
 
         /// <summary>
         /// The report-uri value from the policy
         /// </summary>
-        [JsonProperty("reportUri")]
+        [JsonProperty("reportUri", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string ReportUri { get; set; }
 
         /// <summary>
