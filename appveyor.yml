@@ -11,7 +11,7 @@ build_script:
 - ps: # Build
 - ps: msbuild /t:Build /p:Configuration=Release
 - ps: # Pack library
-- ps: msbuild /t:Pack /p:Configuration=Release /p:OutputPath=..\..\Nuget\ Library\SslLabsLib
+- ps: msbuild /t:Pack /p:Configuration=Release /p:IncludeSymbols=True /p:OutputPath=..\..\Nuget\ Library\SslLabsLib
 test: off
 #test_script:
 #- ps: dotnet test -c Release Library\SslLabsLib.Tests
