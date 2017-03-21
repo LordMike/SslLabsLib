@@ -46,14 +46,14 @@ namespace SslLabsLib.Objects
         /// <summary>
         /// True if the preload directive is set; null otherwise
         /// </summary>
-        [JsonProperty("preload", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("preload", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public bool Preload { get; set; }
 
         /// <summary>
         /// List of raw policy directives
         /// </summary>
         [JsonProperty("directives")]
-        [JsonConverter(typeof(KeyValuePairListConverter))]
+        [JsonConverter(typeof(KeyValuePairObjectConverter))]
         public List<KeyValuePair<string, string>> Directives { get; set; }
     }
 }

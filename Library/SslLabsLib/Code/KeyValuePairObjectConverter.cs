@@ -6,16 +6,16 @@ using Newtonsoft.Json.Linq;
 
 namespace SslLabsLib.Code
 {
-    class KeyValuePairListConverter : JsonConverter
+    class KeyValuePairObjectConverter : JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             List<KeyValuePair<string, string>> list = (List<KeyValuePair<string, string>>)value;
 
-            JArray obj = new JArray();
+            JObject obj = new JObject();
 
             foreach (KeyValuePair<string, string> pair in list)
-                obj.Add(pair.Value);
+                obj[pair.Key] = pair.Value;
 
             obj.WriteTo(writer);
         }
