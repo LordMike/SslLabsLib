@@ -9,7 +9,7 @@ namespace SslLabsLib.Objects
         /// List of suites used
         /// </summary>
         [JsonProperty("list")]
-        public List<Ciphersuite> List { get; set; }
+        public List<Suite> List { get; set; }
 
         /// <summary>
         /// True if the server actively selects cipher suites; if false, we were not able to determine if the server has a preference
@@ -19,7 +19,7 @@ namespace SslLabsLib.Objects
 
         public Suites()
         {
-            List = new List<Ciphersuite>();
+            List = new List<Suite>();
         }
     }
 }

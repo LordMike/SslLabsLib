@@ -163,7 +163,7 @@ namespace SslLabsCli
                 Console.WriteLine("[" + i + "] Grade (ignore trust): " + endpoint.Grade + " (" + endpoint.GradeTrustIgnored + ")");
 
                 Console.WriteLine("[" + i + "] Suites (" + (endpoint.Details.Suites.Preference ? "preferred" : "not preferred") + ")");
-                foreach (Ciphersuite suite in endpoint.Details.Suites.List)
+                foreach (Suite suite in endpoint.Details.Suites.List)
                 {
                     Console.WriteLine("[" + i + "]   " + suite.Name + " " + (suite.Q == 1 ? "(WEAK)" : ""));
                 }

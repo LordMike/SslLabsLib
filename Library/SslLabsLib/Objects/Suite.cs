@@ -2,8 +2,7 @@ using Newtonsoft.Json;
 
 namespace SslLabsLib.Objects
 {
-    // TODO: Rename to Suite
-    public class Ciphersuite
+    public class Suite
     {
         /// <summary>
         /// Suite RFC ID (e.g., 5)
