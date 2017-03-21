@@ -2,6 +2,7 @@
 bin/
 obj/
 .vs/
+Nuget/
 
 # Files
 *.lock.json
