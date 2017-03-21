@@ -215,7 +215,7 @@ namespace SslLabsLib.Objects
         /// Client simulation details
         /// </summary>
         [JsonProperty("sims")]
-        public SimulationDetails Simulations { get; set; }
+        public SimDetails Simulations { get; set; }
 
         /// <summary>
         /// True if the server is vulnerable to the Heartbleed attack.
@@ -351,7 +351,7 @@ namespace SslLabsLib.Objects
             Chain = new Chain();
             Protocols = new List<Protocol>();
             Suites = new Suites();
-            Simulations = new SimulationDetails();
+            Simulations = new SimDetails();
             HstsPreloads = new List<HstsPreload>();
             DrownHosts = new List<DrownHost>();
         }

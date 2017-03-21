@@ -28,7 +28,7 @@ namespace SslLabsLib.Objects
         /// <summary>
         /// Error message when error is encountered, null otherwise
         /// </summary>
-        [JsonProperty("error")]
+        [JsonProperty("error", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public string Error { get; set; }
 
         /// <summary>
@@ -40,20 +40,20 @@ namespace SslLabsLib.Objects
         /// <summary>
         /// True if the includeSubDomains directive is set; null otherwise
         /// </summary>
-        [JsonProperty("includeSubDomains")]
+        [JsonProperty("includeSubDomains", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public bool IncludeSubDomains { get; set; }
 
         /// <summary>
         /// True if the preload directive is set; null otherwise
         /// </summary>
-        [JsonProperty("preload", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty("preload", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public bool Preload { get; set; }
 
         /// <summary>
         /// List of raw policy directives
         /// </summary>
         [JsonProperty("directives")]
-        [JsonConverter(typeof(KeyValuePairListConverter))]
+        [JsonConverter(typeof(KeyValuePairObjectConverter))]
         public List<KeyValuePair<string, string>> Directives { get; set; }
     }
 }

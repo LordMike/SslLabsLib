@@ -8,7 +8,7 @@ namespace SslLabsLib.Objects
         /// The client used
         /// </summary>
         [JsonProperty("client")]
-        public Client Client { get; set; }
+        public SimClient Client { get; set; }
 
         /// <summary>
         /// Zero if handshake was successful, 1 if it was not.
@@ -25,18 +25,24 @@ namespace SslLabsLib.Objects
         /// <summary>
         /// Negotiated protocol ID.
         /// </summary>
-        [JsonProperty("protocolId")]
+        [JsonProperty("protocolId", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public int ProtocolId { get; set; }
 
         /// <summary>
         /// Negotiated suite ID.
         /// </summary>
-        [JsonProperty("suiteId")]
+        [JsonProperty("suiteId", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public int SuiteId { get; set; }
+
+        /// <summary>
+        /// Key exchange info.
+        /// </summary>
+        [JsonProperty("kxInfo", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public string KxInfo { get; set; }
 
         public Simulation()
         {
-            Client = new Client();
+            Client = new SimClient();
         }
     }
 }

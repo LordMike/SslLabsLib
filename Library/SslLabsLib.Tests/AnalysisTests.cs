@@ -14,12 +14,12 @@ namespace SslLabsLib.Tests
         public void GeneralTest()
         {
             SslLabsClient client = new SslLabsClient();
-            Analysis analysis = client.GetAnalysisBlocking("scotthelme.co.uk", options: AnalyzeOptions.ReturnAll);
+            Host analysis = client.GetAnalysisBlocking("scotthelme.co.uk", options: AnalyzeOptions.ReturnAll);
 
             Assert.IsNotNull(analysis);
             Assert.AreEqual(AnalysisStatus.READY, analysis.Status, "scotthelme.co.uk analysis was not ready. Wait for the analysis to complete.");
 
-            TestHelpers.EnsureAllPropertiesSet(analysis, nameof(Analysis.StatusMessage));
+            TestHelpers.EnsureAllPropertiesSet(analysis, nameof(Host.StatusMessage));
 
             Assert.IsTrue(analysis.Endpoints.Any());
 
@@ -34,7 +34,7 @@ namespace SslLabsLib.Tests
         public void HstsTest()
         {
             SslLabsClient client = new SslLabsClient();
-            Analysis analysis = client.GetAnalysisBlocking("scotthelme.co.uk", options: AnalyzeOptions.ReturnAll);
+            Host analysis = client.GetAnalysisBlocking("scotthelme.co.uk", options: AnalyzeOptions.ReturnAll);
 
             Assert.IsNotNull(analysis);
             Assert.AreEqual(AnalysisStatus.READY, analysis.Status, "scotthelme.co.uk analysis was not ready. Wait for the analysis to complete.");
@@ -55,7 +55,7 @@ namespace SslLabsLib.Tests
         public void HpkpTest()
         {
             SslLabsClient client = new SslLabsClient();
-            Analysis analysis = client.GetAnalysisBlocking("scotthelme.co.uk", options: AnalyzeOptions.ReturnAll);
+            Host analysis = client.GetAnalysisBlocking("scotthelme.co.uk", options: AnalyzeOptions.ReturnAll);
 
             Assert.IsNotNull(analysis);
             Assert.AreEqual(AnalysisStatus.READY, analysis.Status, "scotthelme.co.uk analysis was not ready. Wait for the analysis to complete.");

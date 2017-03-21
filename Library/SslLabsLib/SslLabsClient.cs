@@ -46,7 +46,7 @@ namespace SslLabsLib
         public SslLabsClient(Uri baseUrl)
         {
             if (baseUrl == null)
-                throw new ArgumentNullException("baseUrl");
+                throw new ArgumentNullException(nameof(baseUrl));
 
             _restClient = new HttpClient();
             _restClient.BaseAddress = baseUrl;
@@ -68,15 +68,15 @@ namespace SslLabsLib
             return JsonConvert.DeserializeObject<StatusCodes>(json);
         }
 
-        public Analysis GetAnalysis(string hostname, int? maxAge = null, AnalyzeOptions options = AnalyzeOptions.None)
+        public Host GetAnalysis(string hostname, int? maxAge = null, AnalyzeOptions options = AnalyzeOptions.None)
         {
-            Analysis analysis;
-            AnalysisResult result = GetAnalysisInternal(hostname, maxAge, options, out analysis);
+            Host hostResult;
+            AnalysisResult result = GetAnalysisInternal(hostname, maxAge, options, out hostResult);
 
             switch (result)
             {
                 case AnalysisResult.Success:
-                    return analysis;
+                    return hostResult;
                 case AnalysisResult.Error:
                 case AnalysisResult.UnknownError:
                     throw new Exception("The server was unable to handle the request (" + result + ")");
@@ -107,13 +107,13 @@ namespace SslLabsLib
 
         public TryStartResult TryStartAnalysis(string hostname, int? maxAge = null, AnalyzeOptions options = AnalyzeOptions.None)
         {
-            Analysis analysis;
-            return TryStartAnalysis(hostname, maxAge, out analysis, options);
+            Host hostResult;
+            return TryStartAnalysis(hostname, maxAge, out hostResult, options);
         }
 
-        public TryStartResult TryStartAnalysis(string hostname, int? maxAge, out Analysis analysis, AnalyzeOptions options = AnalyzeOptions.None)
+        public TryStartResult TryStartAnalysis(string hostname, int? maxAge, out Host hostResult, AnalyzeOptions options = AnalyzeOptions.None)
         {
-            AnalysisResult result = GetAnalysisInternal(hostname, maxAge, options, out analysis);
+            AnalysisResult result = GetAnalysisInternal(hostname, maxAge, options, out hostResult);
 
             if (result == AnalysisResult.Success)
                 return TryStartResult.Ok;
@@ -124,15 +124,15 @@ namespace SslLabsLib
             return TryStartResult.NotStarted;
         }
 
-        public Analysis GetAnalysisBlocking(string hostname, int? maxAge = null, AnalyzeOptions options = AnalyzeOptions.None, Action<Analysis> progressCallback = null)
+        public Host GetAnalysisBlocking(string hostname, int? maxAge = null, AnalyzeOptions options = AnalyzeOptions.None, Action<Host> progressCallback = null)
         {
             // Deactivate ReturnAll, activate ReturnAllWhenDone
             options &= ~AnalyzeOptions.ReturnAll;
             options |= AnalyzeOptions.ReturnAllIfDone;
 
             // Initial request
-            Analysis analysis;
-            AnalysisResult result = GetAnalysisInternal(hostname, maxAge, options, out analysis);
+            Host hostResult;
+            AnalysisResult result = GetAnalysisInternal(hostname, maxAge, options, out hostResult);
 
             // Loop till we're done
             TimeSpan toWait = WaitTimePreScan;
@@ -150,10 +150,10 @@ namespace SslLabsLib
                     break;
             }
 
-            if (analysis != null && analysis.Status == AnalysisStatus.READY)
-                return analysis;
+            if (hostResult != null && hostResult.Status == AnalysisStatus.READY)
+                return hostResult;
 
-            progressCallback?.Invoke(analysis);
+            progressCallback?.Invoke(hostResult);
 
             // Deactivate StartNew
             options &= ~AnalyzeOptions.StartNew;
@@ -163,7 +163,7 @@ namespace SslLabsLib
                 Thread.Sleep(toWait);
 
                 // Perform next analysis
-                result = GetAnalysisInternal(hostname, maxAge, options, out analysis);
+                result = GetAnalysisInternal(hostname, maxAge, options, out hostResult);
 
                 if (result == AnalysisResult.Error || result == AnalysisResult.UnknownError)
                     throw new Exception("The server was unable to handle the request (" + result + ")");
@@ -181,12 +181,12 @@ namespace SslLabsLib
 
                     // Success
                     // States: DNS, ERROR, IN_PROGRESS, and READY.
-                    if (analysis.Status == AnalysisStatus.DNS || analysis.Status == AnalysisStatus.IN_PROGRESS)
+                    if (hostResult.Status == AnalysisStatus.DNS || hostResult.Status == AnalysisStatus.IN_PROGRESS)
                     {
                         // Underways
                         toWait = WaitTimeScan;
                     }
-                    else if (analysis.Status == AnalysisStatus.READY || analysis.Status == AnalysisStatus.ERROR)
+                    else if (hostResult.Status == AnalysisStatus.READY || hostResult.Status == AnalysisStatus.ERROR)
                     {
                         // We're done
                         break;
@@ -198,10 +198,10 @@ namespace SslLabsLib
                     // Unknown?
                     throw new InvalidOperationException("Unknown state...");
 
-                progressCallback?.Invoke(analysis);
+                progressCallback?.Invoke(hostResult);
             }
 
-            return analysis;
+            return hostResult;
         }
 
         private string BuildUrl(string method, Dictionary<string, string> parms)
@@ -252,7 +252,7 @@ namespace SslLabsLib
             }
         }
 
-        private AnalysisResult GetAnalysisInternal(string hostname, int? maxAge, AnalyzeOptions options, out Analysis analysis)
+        private AnalysisResult GetAnalysisInternal(string hostname, int? maxAge, AnalyzeOptions options, out Host hostResult)
         {
             Dictionary<string, string> parms = new Dictionary<string, string>();
             parms["host"] = hostname;
@@ -288,7 +288,7 @@ namespace SslLabsLib
 
             ReadXHeaders(resp);
 
-            analysis = null;
+            hostResult = null;
             if (resp.StatusCode == HttpStatusCode.BadRequest || resp.StatusCode == HttpStatusCode.InternalServerError)
                 // 400 - invocation error (e.g., invalid parameters)
                 // 500 - internal error
@@ -310,7 +310,7 @@ namespace SslLabsLib
                 return AnalysisResult.UnknownError;
 
             string json = resp.Content.ReadAsStringAsync().Result;
-            analysis = JsonConvert.DeserializeObject<Analysis>(json);
+            hostResult = JsonConvert.DeserializeObject<Host>(json);
 
             return AnalysisResult.Success;
         }

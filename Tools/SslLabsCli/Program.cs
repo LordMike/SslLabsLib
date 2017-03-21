@@ -42,7 +42,7 @@ namespace SslLabsCli
                 return 1;
             }
 
-            Analysis analysis = HandleFetch(options);
+            Host analysis = HandleFetch(options);
 
             if (analysis.Status == AnalysisStatus.ERROR)
             {
@@ -75,9 +75,9 @@ namespace SslLabsCli
             return 0;
         }
 
-        private static Analysis HandleFetch(Options options)
+        private static Host HandleFetch(Options options)
         {
-            Action<Analysis> progress = prg =>
+            Action<Host> progress = prg =>
             {
                 if (prg.Endpoints == null)
                 {
@@ -125,22 +125,22 @@ namespace SslLabsCli
             else
                 analyzeOptions |= AnalyzeOptions.FromCache;
 
-            Analysis analysis = Client.GetAnalysisBlocking(options.Hostname, null, analyzeOptions, progress);
+            Host analysis = Client.GetAnalysisBlocking(options.Hostname, null, analyzeOptions, progress);
 
             return analysis;
         }
 
-        private static void PresentAnalysis(Analysis analysis)
+        private static void PresentAnalysis(Host hostResult)
         {
             Console.WriteLine("== Basic ==");
-            Console.WriteLine("Host: " + analysis.Host + ":" + analysis.Port);
-            Console.WriteLine("Public: " + analysis.IsPublic);
+            Console.WriteLine("Host: " + hostResult.Hostname + ":" + hostResult.Port);
+            Console.WriteLine("Public: " + hostResult.IsPublic);
             Console.WriteLine();
 
-            for (int i = 0; i < analysis.Endpoints.Count; i++)
+            for (int i = 0; i < hostResult.Endpoints.Count; i++)
             {
-                Key key = analysis.Endpoints[i].Details.Key;
-                Cert cert = analysis.Endpoints[i].Details.Cert;
+                Key key = hostResult.Endpoints[i].Details.Key;
+                Cert cert = hostResult.Endpoints[i].Details.Cert;
 
                 Console.WriteLine("== Certificate [" + i + "] ==");
                 Console.WriteLine("CN: " + string.Join(", ", cert.CommonNames));
@@ -154,16 +154,16 @@ namespace SslLabsCli
 
             Console.WriteLine("== Endpoints ==");
 
-            for (int i = 0; i < analysis.Endpoints.Count; i++)
+            for (int i = 0; i < hostResult.Endpoints.Count; i++)
             {
-                Endpoint endpoint = analysis.Endpoints[i];
+                Endpoint endpoint = hostResult.Endpoints[i];
 
                 Console.WriteLine("[" + i + "] == " + endpoint.IpAddress);
                 Console.WriteLine("[" + i + "] Protocols: " + string.Join(", ", endpoint.Details.Protocols.Select(s => s.Name + " " + s.Version)));
                 Console.WriteLine("[" + i + "] Grade (ignore trust): " + endpoint.Grade + " (" + endpoint.GradeTrustIgnored + ")");
 
                 Console.WriteLine("[" + i + "] Suites (" + (endpoint.Details.Suites.Preference ? "preferred" : "not preferred") + ")");
-                foreach (Ciphersuite suite in endpoint.Details.Suites.List)
+                foreach (Suite suite in endpoint.Details.Suites.List)
                 {
                     Console.WriteLine("[" + i + "]   " + suite.Name + " " + (suite.Q == 1 ? "(WEAK)" : ""));
                 }

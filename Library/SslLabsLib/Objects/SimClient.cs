@@ -2,8 +2,7 @@ using Newtonsoft.Json;
 
 namespace SslLabsLib.Objects
 {
-    // TODO: Rename to SimClient
-    public class Client
+    public class SimClient
     {
         /// <summary>
         /// Unique client ID

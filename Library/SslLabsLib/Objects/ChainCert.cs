@@ -5,8 +5,7 @@ using SslLabsLib.Enums;
 
 namespace SslLabsLib.Objects
 {
-    // TODO: Rename to ChainCert
-    public class ChainCertificate
+    public class ChainCert
     {
         /// <summary>
         /// Certificate subject
@@ -99,5 +98,17 @@ namespace SslLabsLib.Objects
         /// </summary>
         [JsonProperty("raw")]
         public string Raw { get; set; }
+
+        /// <summary>
+        /// SHA1 hash of certificate
+        /// </summary>
+        [JsonProperty("sha1Hash")]
+        public string Sha1Hash { get; set; }
+
+        /// <summary>
+        /// SHA256 hash of certificate for HPKP pinning
+        /// </summary>
+        [JsonProperty("pinSha256")]
+        public string PinSha256 { get; set; }
     }
 }

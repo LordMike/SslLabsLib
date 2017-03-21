@@ -2,8 +2,7 @@ using Newtonsoft.Json;
 
 namespace SslLabsLib.Objects
 {
-    // TODO: Rename to Suite
-    public class Ciphersuite
+    public class Suite
     {
         /// <summary>
         /// Suite RFC ID (e.g., 5)
@@ -27,36 +26,36 @@ namespace SslLabsLib.Objects
         /// Strength of DH params (e.g., 1024)
         /// </summary>
         [JsonProperty("dhStrength", NullValueHandling = NullValueHandling.Ignore)]
-        public string DhStrength { get; set; }
+        public int DhStrength { get; set; }
 
         /// <summary>
         /// DH params, p component
         /// </summary>
         [JsonProperty("dhP", NullValueHandling = NullValueHandling.Ignore)]
-        public string DhP { get; set; }
+        public int DhP { get; set; }
 
         /// <summary>
         /// DH params, g component
         /// </summary>
         [JsonProperty("dhG", NullValueHandling = NullValueHandling.Ignore)]
-        public string DhG { get; set; }
+        public int DhG { get; set; }
 
         /// <summary>
         /// DH params, Ys component
         /// </summary>
         [JsonProperty("dhYs", NullValueHandling = NullValueHandling.Ignore)]
-        public string DhYs { get; set; }
+        public int DhYs { get; set; }
 
         /// <summary>
         /// ECDH bits
         /// </summary>
-        [JsonProperty("ecdhBits")]
+        [JsonProperty("ecdhBits", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public int EcdhBits { get; set; }
 
         /// <summary>
         /// ECDH RSA-equivalent strength
         /// </summary>
-        [JsonProperty("ecdhStrength")]
+        [JsonProperty("ecdhStrength", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public int EcdhStrength { get; set; }
 
         /// <summary>

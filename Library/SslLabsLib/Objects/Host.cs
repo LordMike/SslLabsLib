@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -7,14 +7,13 @@ using SslLabsLib.Enums;
 
 namespace SslLabsLib.Objects
 {
-    // TODO: Rename to Host
-    public class Analysis
+    public class Host
     {
         /// <summary>
         /// Assessment host, which can be a hostname or an IP address
         /// </summary>
         [JsonProperty("host")]
-        public string Host { get; set; }
+        public string Hostname { get; set; }
 
         /// <summary>
         /// Assessment port (e.g., 443)
@@ -76,7 +75,7 @@ namespace SslLabsLib.Objects
         /// <summary>
         /// When will the assessment results expire from the cache (typically set only for assessment with errors; otherwise the results stay in the cache for as long as there's sufficient room)
         /// </summary>
-        [JsonProperty("cacheExpiryTime")]
+        [JsonProperty("cacheExpiryTime", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public long CacheExpiryTime { get; set; }
 
         /// <summary>
@@ -91,8 +90,8 @@ namespace SslLabsLib.Objects
         /// </summary>
         [JsonProperty("certHostnames", NullValueHandling = NullValueHandling.Ignore)]
         public List<string> CertHostnames { get; set; }
-
-        public Analysis()
+        
+        public Host()
         {
             Endpoints = new List<Endpoint>();
             CertHostnames = new List<string>();

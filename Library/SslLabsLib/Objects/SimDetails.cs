@@ -3,8 +3,7 @@ using Newtonsoft.Json;
 
 namespace SslLabsLib.Objects
 {
-    // TODO: Rename SimDetails
-    public class SimulationDetails
+    public class SimDetails
     {
         /// <summary>
         /// Simulations
@@ -12,7 +11,7 @@ namespace SslLabsLib.Objects
         [JsonProperty("results")]
         public List<Simulation> Simulations { get; set; }
 
-        public SimulationDetails()
+        public SimDetails()
         {
             Simulations = new List<Simulation>();
         }
