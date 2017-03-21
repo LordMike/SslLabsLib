@@ -1,26 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{8F7C37A6-2C78-4230-8E0A-A0C36603544E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{3A742DD2-45C1-4DAC-A3E0-8507739D7CF1}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SslLabsLib", "Library\SslLabsLib\SslLabsLib.xproj", "{8DE6F280-D62D-4CC4-AD3E-D7FB4154B6E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SslLabsLib", "Library\SslLabsLib\SslLabsLib.csproj", "{8DE6F280-D62D-4CC4-AD3E-D7FB4154B6E2}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SslLabsLib.Tests", "Library\SslLabsLib.Tests\SslLabsLib.Tests.xproj", "{821C5384-CE0D-4EEB-BF1D-83BFC898D992}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SslLabsLib.Tests", "Library\SslLabsLib.Tests\SslLabsLib.Tests.csproj", "{821C5384-CE0D-4EEB-BF1D-83BFC898D992}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SslLabsCli", "Tools\SslLabsCli\SslLabsCli.xproj", "{EC252762-0AEE-4303-9CAF-C567F56B7C7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SslLabsCli", "Tools\SslLabsCli\SslLabsCli.csproj", "{EC252762-0AEE-4303-9CAF-C567F56B7C7B}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SslLabsMassScan", "Tools\SslLabsMassScan\SslLabsMassScan.xproj", "{18610F45-89B2-4DA8-8CF2-FBD7C4F3A0A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SslLabsMassScan", "Tools\SslLabsMassScan\SslLabsMassScan.csproj", "{18610F45-89B2-4DA8-8CF2-FBD7C4F3A0A7}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "TestApplication", "Tools\TestApplication\TestApplication.xproj", "{1B2246B7-AF34-4251-B383-25F4594CE127}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6DB41D2B-41D8-43EA-8171-4D9FF4E51ABD}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApplication", "Tools\TestApplication\TestApplication.csproj", "{1B2246B7-AF34-4251-B383-25F4594CE127}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
