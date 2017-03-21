@@ -26,6 +26,12 @@ namespace SslLabsLib.Objects
         public string Error { get; set; }
 
         /// <summary>
+        /// Hostname of this preload
+        /// </summary>
+        [JsonProperty("hostname")]
+        public string Hostname { get; set; }
+
+        /// <summary>
         /// Time, as a Unix timestamp, when the preload database was retrieved
         /// </summary>
         [JsonProperty("sourceTime")]
