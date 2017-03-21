@@ -1,5 +1,9 @@
-﻿namespace SslLabsLib.Enums
+﻿using Newtonsoft.Json;
+using SslLabsLib.Code;
+
+namespace SslLabsLib.Enums
 {
+    [JsonConverter(typeof(EnumConverter))]
     public enum HstsStatus
     {
         /// <summary>
